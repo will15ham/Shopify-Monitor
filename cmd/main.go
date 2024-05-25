@@ -53,6 +53,7 @@ func fetchProductData(previousStatus map[int64]bool, cfg *config.Config) {
 				imageURL := product.Images[0].Src
 				productURL := fmt.Sprintf("%s/products/%d", cfg.ShopifyBaseURL, product.ID)
 				util.SendDiscordWebhook(cfg.DiscordWebhookURL, message, imageURL, productURL)
+				time.Sleep(2 * time.Second)
 			}
 		}
 	} else {
@@ -71,6 +72,7 @@ func fetchProductData(previousStatus map[int64]bool, cfg *config.Config) {
 							productURL := fmt.Sprintf("%s/products/%d", cfg.ShopifyBaseURL, product.ID)
 							message := fmt.Sprintf("Product: %s\nVariant: %d\nIn Stock: %t\n", product.Title, variant.ID, variant.Available)
 							util.SendDiscordWebhook(cfg.DiscordWebhookURL, message, imageURL, productURL)
+							time.Sleep(2 * time.Second)
 						}
 					}
 				}

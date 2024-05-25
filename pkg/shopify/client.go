@@ -7,7 +7,7 @@ import (
 )
 
 func FetchProductData(shopifyBaseUrl string) ([]Product, error) {
-	resp, err := http.Get(shopifyBaseUrl + "/products.json")
+	resp, err := http.Get(shopifyBaseUrl + "/products.json?limit=250")
 	if err != nil {
 		return nil, err
 	}

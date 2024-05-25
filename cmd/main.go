@@ -46,7 +46,7 @@ func fetchProductData(previousStatus map[int64]bool, cfg *config.Config) {
 	if len(previousStatus) == 0 {
 		for _, product := range products {
 			for _, variant := range product.Variants {
-				message := fmt.Sprintf("Product: %s\nVariant: %s\nIn Stock: %t\n", product.Title, variant.Title, variant.Available)
+				message := fmt.Sprintf("Product: %s\nVariant: %d\nIn Stock: %t\n", product.Title, variant.ID, variant.Available)
 				if !variant.Available {
 					continue
 				}
@@ -69,7 +69,7 @@ func fetchProductData(previousStatus map[int64]bool, cfg *config.Config) {
 							variant = v
 							imageURL := product.Images[0].Src
 							productURL := fmt.Sprintf("%s/products/%d", cfg.ShopifyBaseURL, product.ID)
-							message := fmt.Sprintf("Product: %s\nVariant: %s\nIn Stock: %t\n", product.Title, variant.Title, variant.Available)
+							message := fmt.Sprintf("Product: %s\nVariant: %d\nIn Stock: %t\n", product.Title, variant.ID, variant.Available)
 							util.SendDiscordWebhook(cfg.DiscordWebhookURL, message, imageURL, productURL)
 						}
 					}
